@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui"
+import { UserButton } from "@clerk/nextjs"
 
 const Home = () => {
   return (
-    <div className="text-3xl font-bold">
-      <h1>Home</h1>
-      <Button>Button</Button>
+    <div className="">
+      <UserButton afterSignOutUrl="/" />
     </div>
   )
 }
