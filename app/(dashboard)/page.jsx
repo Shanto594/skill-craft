@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui"
 import { UserButton } from "@clerk/nextjs"
 
 const Home = () => {
