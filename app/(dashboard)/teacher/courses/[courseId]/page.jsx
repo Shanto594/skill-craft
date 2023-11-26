@@ -12,7 +12,7 @@ import { DescriptionForm } from "./_components/description-form"
 import { ImageForm } from "./_components/image-form"
 import { TitleForm } from "./_components/title-form"
 import { PriceForm } from "./_components/price-form"
-// import { AttachmentForm } from "./_components/attachment-form"
+import { AttachmentForm } from "./_components/attachment-form"
 // import { ChaptersForm } from "./_components/chapters-form"
 // import { Actions } from "./_components/actions"
 
@@ -28,18 +28,18 @@ const CourseIdPage = async ({ params }) => {
       id: params.courseId,
       userId,
     },
-    // include: {
-    //   chapters: {
-    //     orderBy: {
-    //       position: "asc",
-    //     },
-    //   },
-    //   attachments: {
-    //     orderBy: {
-    //       createdAt: "desc",
-    //     },
-    //   },
-    // },
+    include: {
+      // chapters: {
+      //   orderBy: {
+      //     position: "asc",
+      //   },
+      // },
+      attachments: {
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
+    },
   })
 
   const categories = await db.category.findMany({
@@ -117,7 +117,7 @@ const CourseIdPage = async ({ params }) => {
                 <IconBadge icon={File} />
                 <h2 className="text-xl">Resources & Attachments</h2>
               </div>
-              {/* <AttachmentForm initialData={course} courseId={course.id} /> */}
+              <AttachmentForm initialData={course} courseId={course.id} />
             </div>
           </div>
         </div>
