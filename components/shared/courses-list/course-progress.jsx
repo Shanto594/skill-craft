@@ -1,4 +1,5 @@
 import { Progress } from "@/components/ui"
+import { cn } from "@/utils"
 
 const colorByVariant = {
   default: "text-sky-700",

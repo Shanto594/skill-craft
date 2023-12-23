@@ -10,7 +10,7 @@ import { formatPrice } from "@/utils"
 export const CourseEnrollButton = ({ price, courseId }) => {
   const [isLoading, setIsLoading] = useState(false)
 
-  const onClick = async () => {
+  const onEnroll = async () => {
     try {
       setIsLoading(true)
 
@@ -25,7 +25,7 @@ export const CourseEnrollButton = ({ price, courseId }) => {
   }
 
   return (
-    <Button onClick={onClick} disabled={isLoading} size="sm" className="w-full md:w-auto">
+    <Button onClick={onEnroll} disabled={isLoading} size="sm" className="w-full md:w-auto">
       Enroll for {formatPrice(price)}
     </Button>
   )
