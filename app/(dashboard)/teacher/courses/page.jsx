@@ -1,13 +1,33 @@
-import { Button } from "@/components/ui"
-import Link from "next/link"
+import { db } from "@/services"
+import { auth } from "@clerk/nextjs"
+import { redirect } from "next/navigation"
+import { columns } from "./_components/columns"
+import { DataTable } from "./_components/data-table"
 
-const Courses = () => {
+const getData = async () => {
+  const courses = await db.course.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  })
+
+  return courses
+}
+
+const CoursesPage = async () => {
+  const { userId } = auth()
+
+  if (!userId) {
+    return redirect("/")
+  }
+
+  const courses = await getData()
+
   return (
     <div className="p-6">
-      <Link href="/teacher/courses/create">
-        <Button>New Course</Button>
-      </Link>
+      <DataTable columns={columns} data={courses} />
     </div>
   )
 }
-export default Courses
+
+export default CoursesPage
