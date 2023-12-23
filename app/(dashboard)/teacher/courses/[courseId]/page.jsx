@@ -1,11 +1,10 @@
-import { IconBadge } from "@/components/ui"
+import { Banner, IconBadge } from "@/components/ui"
 import { db } from "@/services"
 import { auth } from "@clerk/nextjs"
 import { CircleDollarSign, File, LayoutDashboard, ListChecks } from "lucide-react"
 import { redirect } from "next/navigation"
 
-// import { Banner } from "@/components/banner"
-
+import { Actions } from "./_components/actions"
 import { AttachmentForm } from "./_components/attachment-form"
 import { CategoryForm } from "./_components/category-form"
 import { ChaptersForm } from "./_components/chapters-form"
@@ -13,7 +12,6 @@ import { DescriptionForm } from "./_components/description-form"
 import { ImageForm } from "./_components/image-form"
 import { PriceForm } from "./_components/price-form"
 import { TitleForm } from "./_components/title-form"
-// import { Actions } from "./_components/actions"
 
 const CourseIdPage = async ({ params }) => {
   const { userId } = auth()
@@ -65,18 +63,18 @@ const CourseIdPage = async ({ params }) => {
 
   const completionText = `(${completedFields}/${totalFields})`
 
-  // const isComplete = requiredFields.every(Boolean)
+  const isComplete = requiredFields.every(Boolean)
 
   return (
     <>
-      {/* {!course.isPublished && <Banner label="This course is unpublished. It will not be visible to the students." />} */}
+      {!course.isPublished && <Banner label="This course is unpublished. It will not be visible to the students." />}
       <div className="p-6">
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-2">
             <h1 className="text-2xl font-medium">Course setup</h1>
             <span className="text-sm text-slate-700">Complete all fields {completionText}</span>
           </div>
-          {/* <Actions disabled={!isComplete} courseId={params.courseId} isPublished={course.isPublished} /> */}
+          <Actions disabled={!isComplete} courseId={params.courseId} isPublished={course.isPublished} />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
           <div>
