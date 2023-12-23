@@ -1,6 +1,5 @@
 "use client"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Chapter, Course } from "@prisma/client"
 import axios from "axios"
 import { Loader2, PlusCircle } from "lucide-react"
 import { useRouter } from "next/navigation"

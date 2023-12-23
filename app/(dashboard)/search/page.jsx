@@ -1,12 +1,12 @@
 import { auth } from "@clerk/nextjs"
 import { redirect } from "next/navigation"
 
-// import { getCourses } from "@/actions/get-courses"
 // import { CoursesList } from "@/components/courses-list"
 
 import { SearchInput } from "@/components/ui"
-import { db } from "@/services"
+import { db, getCourses } from "@/services"
 import { Categories } from "./_components/categories"
+import { CoursesList } from "@/components/shared"
 
 const SearchPage = async ({ searchParams }) => {
   const { userId } = auth()
@@ -21,10 +21,10 @@ const SearchPage = async ({ searchParams }) => {
     },
   })
 
-  // const courses = await getCourses({
-  //   userId,
-  //   ...searchParams,
-  // })
+  const courses = await getCourses({
+    userId,
+    ...searchParams,
+  })
 
   return (
     <>
@@ -33,7 +33,7 @@ const SearchPage = async ({ searchParams }) => {
       </div>
       <div className="p-6 space-y-4">
         <Categories items={categories} />
-        {/* <CoursesList items={courses} /> */}
+        <CoursesList items={courses} />
       </div>
     </>
   )
