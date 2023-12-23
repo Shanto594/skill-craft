@@ -1,5 +1,6 @@
 export * from "./db"
 export * from "./get-chapter"
 export * from "./get-courses"
+export * from "./get-dashboard-courses"
 export * from "./get-progress"
 export * from "./stripe"
