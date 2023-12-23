@@ -8,7 +8,17 @@ import { useForm } from "react-hook-form"
 import toast from "react-hot-toast"
 import * as z from "zod"
 
-import { Button, Checkbox, Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui"
+import {
+  Button,
+  Checkbox,
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormMessage,
+  Label,
+} from "@/components/ui"
 import { cn } from "@/utils"
 
 const formSchema = z.object({
@@ -71,10 +81,10 @@ export const ChapterAccessForm = ({ initialData, courseId, chapterId }) => {
               render={({ field }) => (
                 <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
-                    <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                    <Checkbox checked={field.value} onCheckedChange={field.onChange} id="isFree" />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormDescription>Check this box if you want to make this chapter free for preview</FormDescription>
+                    <Label htmlFor="isFree">Check this box if you want to make this chapter free for preview</Label>
                   </div>
                 </FormItem>
               )}
