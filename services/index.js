@@ -1,4 +1,5 @@
 export * from "./db"
+export * from "./get-analytics"
 export * from "./get-chapter"
 export * from "./get-courses"
 export * from "./get-dashboard-courses"
