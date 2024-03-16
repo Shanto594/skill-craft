@@ -45,7 +45,7 @@ export const DataTable = ({ columns, data }) => {
           onChange={event => table.getColumn("title")?.setFilterValue(event.target.value)}
           className="max-w-sm"
         />
-        <Link href="/teacher/create">
+        <Link href="/teacher/courses/create">
           <Button>
             <PlusCircle className="h-4 w-4 mr-2" />
             New course
