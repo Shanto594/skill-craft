@@ -11,6 +11,7 @@ export const NavbarRoutes = () => {
   const { userId } = useAuth()
   const pathname = usePathname()
 
+  const isBecomeATeacherPage = pathname?.startsWith("/become-a-teacher")
   const isTeacherPage = pathname?.startsWith("/teacher")
   const isCoursePage = pathname?.includes("/courses")
   const isSearchPage = pathname === "/search"
@@ -23,6 +24,13 @@ export const NavbarRoutes = () => {
         </div>
       )}
       <div className="flex gap-x-2 ml-auto">
+        {!isBecomeATeacherPage && (
+          <Link href="/become-a-teacher">
+            <Button size="sm" variant="success">
+              Become a teacher
+            </Button>
+          </Link>
+        )}
         {isTeacherPage || isCoursePage ? (
           <Link href="/">
             <Button size="sm" variant="ghost">
