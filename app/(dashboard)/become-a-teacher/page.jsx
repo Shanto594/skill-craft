@@ -14,9 +14,10 @@ const Create = () => {
 
   const onSubmit = async () => {
     try {
-      const response = await axios.post("/api/become-a-teacher")
+      const response = await axios.post("/api/teacher")
       router.push(`/`)
       toast.success("Your application has been submitted successfully")
+      router.refresh()
     } catch {
       toast.error("Something went wrong")
     }

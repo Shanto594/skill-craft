@@ -1,4 +1,4 @@
-import { isTeacher } from "@/utils"
+// import { isTeacher } from "@/utils"
 import { auth } from "@clerk/nextjs"
 import { createUploadthing } from "uploadthing/next"
 

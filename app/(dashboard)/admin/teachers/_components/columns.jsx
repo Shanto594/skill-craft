@@ -1,7 +1,9 @@
 "use client"
 import { ConfirmModal } from "@/components/shared"
 import { Badge, Button } from "@/components/ui"
+import axios from "axios"
 import { ArrowUpDown } from "lucide-react"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 import toast from "react-hot-toast"
 
@@ -27,6 +29,7 @@ export const columns = [
               {user.firstName} {user.lastName}
             </div>
             <div className="text-gray-500">{user.email}</div>
+            <div className="text-gray-500">{user.id}</div>
           </div>
         </div>
       )
@@ -43,15 +46,18 @@ export const columns = [
       )
     },
     cell: ({ row }) => {
-      const approved = row.getValue("price")
+      const approved = row.getValue("approved")
+      const router = useRouter()
+
       const [isLoading, setIsLoading] = useState(false)
 
       const onApprove = async () => {
         try {
           setIsLoading(true)
 
-          const response = await axios.post(`/api/become-a-teacher/approve`)
-
+          const response = await axios.post(`/api/teacher/approve`, {
+            id: row.original.userId,
+          })
           toast.success("Teacher approved")
           router.refresh()
         } catch {

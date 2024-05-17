@@ -6,8 +6,9 @@ const TeacherLayout = async ({ children }) => {
   const { userId } = auth()
 
   const isUserTeacher = await isTeacher(userId)
+  const isUserApplied = await isTeacher(userId, false)
 
-  if (!isUserTeacher) {
+  if (isUserTeacher || isUserApplied) {
     return redirect("/")
   }
 

@@ -1,5 +1,7 @@
 "use client"
 
+import { isAdmin } from "@/utils"
+import { useAuth } from "@clerk/nextjs"
 import { BarChart, Compass, Layout, List, User } from "lucide-react"
 import { usePathname } from "next/navigation"
 import SidebarItem from "./sidebar-item"
@@ -39,15 +41,15 @@ const adminRoutes = [
 ]
 
 const SidebarRoutes = () => {
+  const { userId } = useAuth()
+
   const pathname = usePathname()
 
-  const isTeacherPage = pathname?.includes("/teacher")
+  const isTeacherPage = pathname?.startsWith("/teacher")
 
   let routes = isTeacherPage ? teacherRoutes : guestRoutes
 
-  const isAdmin = true
-
-  if (isAdmin) {
+  if (isAdmin(userId)) {
     routes = [...routes, ...adminRoutes]
   }
 
@@ -59,4 +61,5 @@ const SidebarRoutes = () => {
     </div>
   )
 }
+
 export default SidebarRoutes

@@ -10,25 +10,25 @@ export async function POST() {
       return new NextResponse("Unauthorized", { status: 401 })
     }
     // check if the user is already a teacher
-    const teacher = await db.teacher.findFirst({
+    const hasTeacher = await db.teacher.findFirst({
       where: {
         userId,
       },
     })
 
-    if (teacher) {
+    if (hasTeacher) {
       return new NextResponse("You are already a teacher", { status: 400 })
     }
 
-    const course = await db.teacher.create({
+    const teacher = await db.teacher.create({
       data: {
         userId,
       },
     })
 
-    return NextResponse.json(course)
+    return NextResponse.json(teacher)
   } catch (error) {
-    console.log("[BECOME-A-TEACHER]", error)
+    console.log("[TEACHER]", error)
     return new NextResponse("Internal Error", { status: 500 })
   }
 }

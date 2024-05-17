@@ -7,8 +7,8 @@ export const cn = (...inputs) => {
   return twMerge(clsx(inputs))
 }
 
-export const isTeacher = userId => {
-  return userId === process.env.NEXT_PUBLIC_TEACHER_ID
+export const isAdmin = userId => {
+  return userId === process.env.NEXT_PUBLIC_ADMIN_ID
 }
 
 export const formatPrice = price => {
