@@ -4,8 +4,11 @@ import { redirect } from "next/navigation"
 import { columns } from "./_components/columns"
 import { DataTable } from "./_components/data-table"
 
-const getData = async () => {
+const getData = async userId => {
   const courses = await db.course.findMany({
+    where: {
+      userId,
+    },
     orderBy: {
       createdAt: "desc",
     },
@@ -21,7 +24,7 @@ const CoursesPage = async () => {
     return redirect("/")
   }
 
-  const courses = await getData()
+  const courses = await getData(userId)
 
   return (
     <div className="p-6">
