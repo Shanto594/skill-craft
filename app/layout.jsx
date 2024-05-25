@@ -1,4 +1,4 @@
-import { ConfettiProvider, ToastProvider } from "@/components/providers"
+import { ConfettiProvider, CrispChatProvider, ToastProvider } from "@/components/providers"
 import config from "@/config"
 import "@/styles/globals.css"
 import { cn } from "@/utils"
@@ -19,6 +19,7 @@ export default function RootLayout({ children }) {
         <body className={cn(inter.className, "overflow-x-hidden")}>
           <ConfettiProvider />
           <ToastProvider />
+          <CrispChatProvider />
           {children}
         </body>
       </html>
