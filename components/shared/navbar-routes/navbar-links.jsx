@@ -11,9 +11,6 @@ export const NavbarLinks = ({ teacherButton, becomeATeacher }) => {
 
   const isBecomeATeacherPage = pathname?.startsWith("/become-a-teacher")
   const isTeacherPage = pathname?.startsWith("/teacher")
-  console.log(`🔥 | isTeacherPage:`, isTeacherPage)
-
-  console.log(`🔥 | pathname:`, pathname)
 
   const isCoursePage = pathname?.includes("/courses")
   const isSearchPage = pathname === "/search"
