@@ -91,7 +91,6 @@ export async function PATCH(req, { params }) {
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 })
     }
-
     const ownCourse = await db.course.findUnique({
       where: {
         id: params.courseId,
@@ -121,19 +120,23 @@ export async function PATCH(req, { params }) {
       })
 
       if (existingMuxData) {
+        console.log(`🔥 | 6:`, 6)
         await Video.Assets.del(existingMuxData.assetId)
+        console.log(`🔥 | 6.2:`, 6.2)
         await db.muxData.delete({
           where: {
             id: existingMuxData.id,
           },
         })
       }
+      console.log(`🔥 | 7:`, 7)
 
       const asset = await Video.Assets.create({
         input: values.videoUrl,
         playback_policy: "public",
         test: false,
       })
+      console.log(`🔥 | 8:`, 8)
 
       await db.muxData.create({
         data: {
@@ -143,6 +146,7 @@ export async function PATCH(req, { params }) {
         },
       })
     }
+    console.log(`🔥 | 9:`, 9)
 
     return NextResponse.json(chapter)
   } catch (error) {

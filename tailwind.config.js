@@ -3,7 +3,7 @@ var { withUt } = require("uploadthing/tw")
 /** @type {import('tailwindcss').Config} */
 module.exports = withUt({
   darkMode: ["class"],
-  content: ["./components/**/*.{js,jsx}", "./app/**/*.{js,jsx}"],
+  content: ["./components/**/*.{js,jsx,mdx}", "./app/**/*.{js,jsx,mdx}"],
   theme: {
     container: {
       center: true,
