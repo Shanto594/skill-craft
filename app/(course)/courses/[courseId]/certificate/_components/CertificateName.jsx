@@ -3,13 +3,11 @@
 import { useUser } from "@clerk/nextjs"
 
 export const CertificateName = () => {
-  const {
-    user: { firstName, lastName },
-  } = useUser()
+  const { user } = useUser()
 
   return (
     <p className="text-3xl font-semibold mb-4">
-      {firstName} {lastName}
+      {user?.firstName} {user?.lastName}
     </p>
   )
 }
