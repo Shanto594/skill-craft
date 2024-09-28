@@ -29,40 +29,22 @@ export const columns = [
               {user.firstName} {user.lastName}
             </div>
             <div className="text-gray-500">{user.email}</div>
+            <div className="text-gray-500">{user.id}</div>
           </div>
         </div>
       )
     },
   },
   {
-    accessorKey: "highestDegree",
-    header: "Highest Degree",
-  },
-  {
-    accessorKey: "fieldOfStudy",
-    header: "Field of Study",
-  },
-  {
-    accessorKey: "institution",
-    header: "Institution",
-  },
-  {
-    accessorKey: "teachingExperience",
-    header: "Teaching Experience",
-    cell: ({ row }) => {
-      return <div className="max-w-[200px] truncate">{row.original.teachingExperience}</div>
-    },
-  },
-  {
-    accessorKey: "certifications",
-    header: "Certifications",
-    cell: ({ row }) => {
-      return <div className="max-w-[200px] truncate">{row.original.certifications || "N/A"}</div>
-    },
-  },
-  {
     accessorKey: "approved",
-    header: "Status",
+    header: ({ column }) => {
+      return (
+        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+          Approved
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
     cell: ({ row }) => {
       const approved = row.getValue("approved")
       const router = useRouter()
