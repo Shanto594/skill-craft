@@ -1,8 +1,11 @@
 import { auth } from "@clerk/nextjs"
+import Link from "next/link"
 import { redirect } from "next/navigation"
 
 import { CourseProgress } from "@/components/shared"
+import { Button } from "@/components/ui"
 import { db } from "@/services"
+import { CheckCircle } from "lucide-react"
 import { CourseSidebarItem } from "./course-sidebar-item"
 
 export const CourseSidebar = async ({ course, progressCount }) => {
@@ -20,6 +23,8 @@ export const CourseSidebar = async ({ course, progressCount }) => {
       },
     },
   })
+
+  const isAllChaptersCompleted = progressCount === 100
 
   return (
     <div className="h-full border-r flex flex-col overflow-y-auto shadow-sm">
@@ -43,6 +48,16 @@ export const CourseSidebar = async ({ course, progressCount }) => {
           />
         ))}
       </div>
+      {isAllChaptersCompleted && (
+        <div className="mt-auto p-4">
+          <Link href={`/courses/${course.id}/certificate`}>
+            <Button className="w-full" variant="success">
+              <CheckCircle className="h-4 w-4 mr-2" />
+              View Certificate
+            </Button>
+          </Link>
+        </div>
+      )}
     </div>
   )
 }
