@@ -127,10 +127,14 @@ model StripeCustomer {
 }
 
 model Teacher {
-  id String @id @default(uuid())
-  userId String @unique
-  approved Boolean @default(false)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                 String   @id @default(uuid())
+  userId             String   @unique
+  approved           Boolean  @default(false)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  highestDegree      String
+  fieldOfStudy       String
+  institution        String
+  teachingExperience String
+  certifications     String?
 }
