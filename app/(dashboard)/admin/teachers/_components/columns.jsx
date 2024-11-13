@@ -7,6 +7,12 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import toast from "react-hot-toast"
 
+// highestDegree: 'Bacholors',
+// fieldOfStudy: 'Computer science and engineering',
+// institution: 'BUBT University',
+// teachingExperience: 'I have almost five years of experience in web development, so I know web development better than anybody else.',
+// certifications: 'Web Development\nHtml\nCss\nJS',
+
 export const columns = [
   {
     accessorKey: "userId",
@@ -33,6 +39,76 @@ export const columns = [
           </div>
         </div>
       )
+    },
+  },
+  {
+    accessorKey: "highestDegree",
+    header: ({ column }) => {
+      return (
+        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+          Highest Degree
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      return row.original.highestDegree
+    },
+  },
+  {
+    accessorKey: "fieldOfStudy",
+    header: ({ column }) => {
+      return (
+        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+          Field of Study
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      return row.original.fieldOfStudy
+    },
+  },
+  {
+    accessorKey: "institution",
+    header: ({ column }) => {
+      return (
+        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+          Institution
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      return row.original.institution
+    },
+  },
+  {
+    accessorKey: "teachingExperience",
+    header: ({ column }) => {
+      return (
+        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+          Teaching Experience
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      return row.original.teachingExperience
+    },
+  },
+  {
+    accessorKey: "certifications",
+    header: ({ column }) => {
+      return (
+        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+          Certifications
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      return row.original.certifications
     },
   },
   {
