@@ -1,9 +1,6 @@
+import { db, getProgress } from "@/services"
 import { auth } from "@clerk/nextjs"
 import { redirect } from "next/navigation"
-
-// import { getProgress } from "@/actions/get-progress";
-
-import { db, getProgress } from "@/services"
 import { CourseNavbar } from "./_components/course-navbar"
 import { CourseSidebar } from "./_components/course-sidebar"
 
@@ -34,6 +31,7 @@ const CourseLayout = async ({ children, params }) => {
           position: "asc",
         },
       },
+      teacher: true,
     },
   })
 

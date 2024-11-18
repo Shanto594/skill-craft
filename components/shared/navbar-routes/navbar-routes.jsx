@@ -1,9 +1,9 @@
 import { NavbarLinks } from "./navbar-links"
 
-import { isTeacher } from "@/services"
+import { Badge, Button } from "@/components/ui"
+import { db, isTeacher } from "@/services"
 import { auth } from "@clerk/nextjs"
 import Link from "next/link"
-import { Badge, Button } from "../../ui"
 
 const TeacherButton = async () => {
   const { userId } = auth()
@@ -24,10 +24,20 @@ const TeacherButton = async () => {
 const BecomeATeacher = async () => {
   const { userId } = auth()
 
-  const isUserTeacher = await isTeacher(userId)
+  const teacher = await db.teacher.findMany({
+    where: {
+      userId: userId,
+    },
+    select: {
+      id: true,
+      approved: true,
+    },
+  })
+
+  const isUserTeacher = teacher.length > 0 && teacher[0].approved === "APPROVED"
   if (isUserTeacher) return null
 
-  const isUserApplied = await isTeacher(userId, false)
+  const isUserApplied = teacher.length > 0 && teacher[0].approved === "PENDING"
 
   if (isUserApplied) return <Badge variant="success">Applied for teacher</Badge>
 

@@ -32,7 +32,10 @@ model Course {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  teacher Teacher @relation(fields: [userId], references: [userId])
+
   @@index([categoryId])
+  @@index([userId])
   @@fulltext([title])
 }
 
@@ -126,10 +129,16 @@ model StripeCustomer {
   updatedAt DateTime @updatedAt
 }
 
+enum TeacherStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
 model Teacher {
   id                 String   @id @default(uuid())
   userId             String   @unique
-  approved           Boolean  @default(false)
+  approved           TeacherStatus @default(PENDING)
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
   highestDegree      String
@@ -137,4 +146,5 @@ model Teacher {
   institution        String
   teachingExperience String
   certifications     String?
+  courses            Course[]
 }

@@ -31,7 +31,6 @@ export async function POST(req) {
         institution,
         teachingExperience,
         certifications,
-        approved: false, // Set to false by default, admin will approve later
       },
     })
 

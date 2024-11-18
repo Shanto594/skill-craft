@@ -123,16 +123,19 @@ export const columns = [
     },
     cell: ({ row }) => {
       const approved = row.getValue("approved")
+      console.log(`🔥 | approved:`, approved)
+
       const router = useRouter()
 
       const [isLoading, setIsLoading] = useState(false)
 
-      const onApprove = async () => {
+      const onApprove = async status => {
         try {
           setIsLoading(true)
 
           const response = await axios.post(`/api/teacher/approve`, {
             id: row.original.userId,
+            status,
           })
           toast.success("Teacher approved")
           router.refresh()
@@ -143,14 +146,24 @@ export const columns = [
         }
       }
 
-      return approved ? (
-        <Badge variant="success">Approved</Badge>
-      ) : (
-        <ConfirmModal onConfirm={onApprove}>
-          <Button variant="outline" disabled={isLoading}>
-            Approve
-          </Button>
-        </ConfirmModal>
+      if (approved === "APPROVED") return <Badge variant="success">Approved</Badge>
+
+      if (approved === "REJECTED") return <Badge variant="danger">Rejected</Badge>
+
+      return (
+        <div className="flex gap-2">
+          <ConfirmModal onConfirm={() => onApprove(true)}>
+            <Button size="sm" variant="success" disabled={isLoading}>
+              Approve
+            </Button>
+          </ConfirmModal>
+
+          <ConfirmModal onConfirm={() => onApprove(false)}>
+            <Button size="sm" variant="danger" disabled={isLoading}>
+              Reject
+            </Button>
+          </ConfirmModal>
+        </div>
       )
     },
   },

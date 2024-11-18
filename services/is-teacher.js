@@ -1,6 +1,6 @@
 import { db } from "./db"
 
-export const isTeacher = async (userId, approved = true) => {
+export const isTeacher = async (userId, approved = "APPROVED") => {
   try {
     const teacher = await db.teacher.findMany({
       where: {

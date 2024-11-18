@@ -7,13 +7,12 @@ import { Button } from "@/components/ui"
 import { db } from "@/services"
 import { CheckCircle } from "lucide-react"
 import { CourseSidebarItem } from "./course-sidebar-item"
+import { CourseTeacher } from "./course-teacher"
 
 export const CourseSidebar = async ({ course, progressCount }) => {
   const { userId } = auth()
 
-  if (!userId) {
-    return redirect("/")
-  }
+  if (!userId) return redirect("/")
 
   const purchase = await db.purchase.findUnique({
     where: {
@@ -36,6 +35,8 @@ export const CourseSidebar = async ({ course, progressCount }) => {
           </div>
         )}
       </div>
+      <CourseTeacher course={course} />
+
       <div className="flex flex-col w-full">
         {course.chapters.map(chapter => (
           <CourseSidebarItem

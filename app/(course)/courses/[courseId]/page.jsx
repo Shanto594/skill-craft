@@ -1,4 +1,4 @@
-import { db, getProgress } from "@/services"
+import { db } from "@/services"
 import { auth } from "@clerk/nextjs"
 import { redirect } from "next/navigation"
 
@@ -24,13 +24,11 @@ const CourseIdPage = async ({ params }) => {
     return redirect("/")
   }
 
-  const progressCount = await getProgress(userId, course.id)
+  // const progressCount = await getProgress(userId, course.id)
 
-  const isAllChaptersCompleted = progressCount === 100
+  // const isAllChaptersCompleted = progressCount === 100
 
-  if (isAllChaptersCompleted) {
-    return null
-  }
+  // if (isAllChaptersCompleted) return null
 
   return redirect(`/courses/${course.id}/chapters/${course.chapters[0].id}`)
 }
