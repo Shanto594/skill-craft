@@ -41,6 +41,10 @@ const BecomeATeacher = async () => {
 
   if (isUserApplied) return <Badge variant="success">Applied for teacher</Badge>
 
+  const isUserRejected = teacher.length > 0 && teacher[0].approved === "REJECTED"
+
+  if (isUserRejected) return <Badge variant="danger">Your application was rejected</Badge>
+
   return (
     <Link href="/become-a-teacher">
       <Button size="sm" variant="success">
