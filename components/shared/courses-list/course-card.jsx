@@ -1,4 +1,4 @@
-import { BookOpen } from "lucide-react"
+import { BookOpen, Star } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -6,7 +6,7 @@ import { IconBadge } from "@/components/ui"
 import { formatPrice } from "@/utils"
 import { CourseProgress } from "./course-progress"
 
-export const CourseCard = ({ id, title, imageUrl, chaptersLength, price, progress, category }) => {
+export const CourseCard = ({ id, title, imageUrl, chaptersLength, price, progress, category, rating, ratingCount }) => {
   return (
     <Link href={`/courses/${id}`}>
       <div className="group hover:shadow-sm transition overflow-hidden border rounded-lg p-3 h-full">
@@ -18,7 +18,11 @@ export const CourseCard = ({ id, title, imageUrl, chaptersLength, price, progres
             {title}
           </div>
           <p className="text-xs text-muted-foreground">{category}</p>
-          <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
+          <div className="my-3 flex items-center gap-x-3 text-sm md:text-xs">
+            <div className="flex items-center gap-x-1 text-slate-500">
+              <IconBadge size="sm" variant="warning" icon={Star} />
+              <span>{ratingCount === 0 ? "Not Rated" : `${rating} (${ratingCount})`}</span>
+            </div>
             <div className="flex items-center gap-x-1 text-slate-500">
               <IconBadge size="sm" icon={BookOpen} />
               <span>

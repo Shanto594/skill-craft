@@ -5,7 +5,8 @@ import { redirect } from "next/navigation"
 import { CourseProgress } from "@/components/shared"
 import { Button } from "@/components/ui"
 import { db } from "@/services"
-import { CheckCircle } from "lucide-react"
+import { CheckCircle, Star } from "lucide-react"
+import { CourseRating } from "./course-rating"
 import { CourseSidebarItem } from "./course-sidebar-item"
 import { CourseTeacher } from "./course-teacher"
 
@@ -51,6 +52,8 @@ export const CourseSidebar = async ({ course, progressCount }) => {
       </div>
       {isAllChaptersCompleted && (
         <div className="mt-auto p-4">
+          <CourseRating course={course} userId={userId} />
+
           <Link href={`/courses/${course.id}/certificate`}>
             <Button className="w-full" variant="success">
               <CheckCircle className="h-4 w-4 mr-2" />

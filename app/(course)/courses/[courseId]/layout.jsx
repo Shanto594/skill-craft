@@ -32,6 +32,7 @@ const CourseLayout = async ({ children, params }) => {
         },
       },
       teacher: true,
+      ratings: true,
     },
   })
 

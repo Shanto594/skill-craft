@@ -14,6 +14,10 @@ export const CoursesList = ({ items }) => {
             price={item.price}
             progress={item.progress}
             category={item?.category?.name}
+            rating={parseFloat(
+              item.ratings.reduce((acc, rating) => acc + rating.rating, 0) / item.ratings.length
+            ).toFixed(1)}
+            ratingCount={item.ratings.length}
           />
         ))}
       </div>

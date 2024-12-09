@@ -11,6 +11,7 @@ export const getDashboardCourses = async userId => {
         course: {
           include: {
             category: true,
+            ratings: true,
             chapters: {
               where: {
                 isPublished: true,
